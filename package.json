@@ -4,14 +4,16 @@
   "description": "React Base",
   "main": "src/server/index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "webpack-cli --config webpack.config.js --colors",
     "lint": "eslint src/frontend --fix",
     "start:dev": "nodemon src/server/index",
     "test": "jest",
     "test-watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "react",
