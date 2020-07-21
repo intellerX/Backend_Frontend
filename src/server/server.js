@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 import express from 'express';
@@ -10,16 +11,15 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducer from '../frontend/reducers';
-import Layout from '../frontend/components/Layout';
-import initialState from '../frontend/initialState';
-import serverRoutes from '../frontend/routes/serverRoutes';
-import getManifest from './getManifest';
-
 import cookieParser from 'cookie-parser';
 import boom from '@hapi/boom';
 import passport from 'passport';
 import axios from 'axios';
+import reducer from '../frontend/reducers';
+import Layout from '../frontend/components/Layout';
+import serverRoutes from '../frontend/routes/serverRoutes';
+import getManifest from './getManifest';
+
 
 dotenv.config();
 
@@ -79,14 +79,48 @@ const setResponse = (html, preloadedState, manifest) => {
   );
 };
 
-const renderApp = (req, res) => {
+const renderApp = async (req, res) => {
+  let initialState;
+  const { token, email, name, id } = req.cookies;
+
+  try {
+    let movieList = await axios({
+      url: `${process.env.API_URL}/api/movies`,
+      headers: { Authorization: `Bearer ${token}`},
+      method: 'get',
+    });
+
+    
+
+    movieList = movieList.data.data;
+
+   
+
+    initialState = {
+      user: {
+        id, email, name,
+      },
+      myList: [],
+      trends: movieList.filter(movie => movie.contentRating === 'PG' &&movie._id),
+      originals: movieList.filter(movie => movie.contentRating === 'G'&& movie._id)
+    };
+  } catch (err) {
+    initialState = {
+      user: {},
+      myList: [],
+      trends: [],
+      originals: []
+    }
+  }
+
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
+  const isLogged = (initialState.user.id);
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
         <Layout>
-          {renderRoutes(serverRoutes)}
+          {renderRoutes(serverRoutes(isLogged))}
         </Layout>
       </StaticRouter>
     </Provider>
@@ -101,22 +135,22 @@ app.post("/auth/sign-in", async function (req, res, next) {
         next(boom.unauthorized());
       }
 
-      req.login(data, { session: false }, async function (error) {
-        if (error) {
-          next(error);
+      req.login(data, { session: false }, async function (err) {
+        if (err) {
+          next(err);
         }
 
         const { token, ...user } = data;
 
         res.cookie("token", token, {
-          httpOnly: !config.dev,
-          secure: !config.dev
+          httpOnly: !(ENV === 'development'),
+          secure: !(ENV === 'development')
         });
 
         res.status(200).json(user);
       });
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(err);
     }
   })(req, res, next);
 });
@@ -125,17 +159,44 @@ app.post("/auth/sign-up", async function (req, res, next) {
   const { body: user } = req;
 
   try {
-    await axios({
-      url: `${config.apiUrl}/api/auth/sign-up`,
+    const userData = await axios({
+      url: `${process.env.API_URL}/api/auth/sign-up`,
       method: "post",
-      data: user
+      data: {
+        'email': user.email,
+        'name': user.name,
+        'password': user.password
+      }
     });
-
-    res.status(201).json({ message: "user created" });
+    res.status(201).json({
+      name: req.body.name,
+      email: req.body.email,
+      id: userData.data.id
+    });
   } catch (error) {
     next(error);
   }
 });
+
+app.post("/user-movies/:userMovieId", async function (req, res, next) {
+  const { userMovieId } = req.params;
+  const {id: userId, token} = req.cookies;
+
+  try {
+    const response = await axios({
+      url: `${process.env.API_URL}/api/auth/user-movies/${userMovieId}`,
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {userId}
+    });
+    res.status(200).json(response.data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 
 app.get('*', renderApp);
