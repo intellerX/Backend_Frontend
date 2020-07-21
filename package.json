@@ -9,7 +9,8 @@
     "start:dev": "nodemon src/server/index",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "start": "nodemon src/server/index"
   },
   "keywords": [
     "react",
