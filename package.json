@@ -2,14 +2,15 @@
   "name": "react-base",
   "version": "1.0.0",
   "description": "React Base",
-  "main": "src/server/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
-    "test": "react-scripts test --env = jsdom ",
-    " eject " :" react-scriptseject ",
-    " heroku-postbuild ":" npm run build "
-    },
+    "build": "webpack-cli --config webpack.config.js --colors",
+    "lint": "eslint src/frontend --fix",
+    "start:dev": "nodemon src/server/index",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
   "keywords": [
     "react",
     "webpack"
@@ -18,19 +19,19 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.8.3",
-    "@babel/polyfill": "^7.10.4",
+    "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@babel/register": "^7.8.3",
-    "@hapi/boom": "^9.1.0",
+    "@hapi/boom": "^9.0.0",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.19.2",
     "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.0",
     "helmet": "^3.21.2",
     "history": "^4.10.1",
     "ignore-styles": "^5.0.1",
@@ -46,7 +47,6 @@
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
-    "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "webpack": "^4.41.5",
@@ -69,24 +69,22 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.0",
     "file-loader": "^4.3.0",
-    "jest": "^26.1.0",
+    "jest": "^25.1.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.1",
+    "react-test-renderer": "^16.12.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
     "webpack-manifest-plugin": "^2.2.0"
   },
-  "engines": {
-    "node": "12.16.2"
-  },
   "jest": {
-    "verbose":true,
+    "verbose": true,
     "setupFilesAfterEnv": [
       "<rootDir>/src/frontend/__test__/setupTest.js"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
-      "\\.(scss||css||sass)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
+      "\\.(jp|jpeg|png|gif)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
+      "\\.(scss|css|sass)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
     }
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 import express from 'express';
@@ -89,13 +88,7 @@ const renderApp = async (req, res) => {
       headers: { Authorization: `Bearer ${token}`},
       method: 'get',
     });
-
-    
-
     movieList = movieList.data.data;
-
-   
-
     initialState = {
       user: {
         id, email, name,
@@ -177,26 +170,6 @@ app.post("/auth/sign-up", async function (req, res, next) {
     next(error);
   }
 });
-
-app.post("/user-movies/:userMovieId", async function (req, res, next) {
-  const { userMovieId } = req.params;
-  const {id: userId, token} = req.cookies;
-
-  try {
-    const response = await axios({
-      url: `${process.env.API_URL}/api/auth/user-movies/${userMovieId}`,
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {userId}
-    });
-    res.status(200).json(response.data);
-  } catch (error) {
-    next(error);
-  }
-});
-
 
 
 app.get('*', renderApp);

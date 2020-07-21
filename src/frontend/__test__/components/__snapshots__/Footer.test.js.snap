@@ -19,5 +19,8 @@ exports[`<Footer /> Footer Snapshot 1`] = `
   >
     Centro de ayuda
   </a>
+  <span>
+    Hola
+  </span>
 </footer>
 `;

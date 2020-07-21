@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable func-names */
 const passport = require("passport");
 const { BasicStrategy } = require("passport-http");
