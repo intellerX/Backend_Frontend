@@ -77,6 +77,9 @@
     "style-loader": "^0.23.1",
     "webpack-manifest-plugin": "^2.2.0"
   },
+  "engines": {
+    "node": "12.16.x"
+  },
   "jest": {
     "verbose":true,
     "setupFilesAfterEnv": [
