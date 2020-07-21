@@ -4,12 +4,14 @@
   "description": "React Base",
   "main": "src/server/index.js",
   "scripts": {
+    "start": "react-scripts start",
     "build": "webpack-cli --config webpack.config.js --colors",
     "lint": "eslint src/frontend --fix",
     "start:dev": "nodemon src/server/index",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "eject": "react-scripts eject"
   },
   "keywords": [
     "react",
