@@ -16,6 +16,9 @@
     "react",
     "webpack"
   ],
+  "engines": {
+    "node": "12.16.2"
+  },
   "author": "Oscar Barajas <oscar@platzi.com>",
   "license": "MIT",
   "dependencies": {
