@@ -62,8 +62,7 @@ const setResponse = (html, preloadedState, manifest) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <meta charset="utf-8" />
-          <base href="/"/>
+          <meta charset="utf-8" />          
           <link rel="stylesheet" href="${mainStyles}" type="text/css"/>
           <title>Platfix</title>
         </head>
