@@ -2,7 +2,7 @@
   "name": "react-base",
   "version": "1.0.0",
   "description": "React Base",
-  "main": "src/server/index.js",
+  "main": "src/server/index",
   "scripts": {
     "build": "webpack-cli --config webpack.config.js --colors",
     "lint": "eslint src/frontend --fix",
@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "node src/server/index.js"
+    "start": "node src/server/index"
   },
   "keywords": [
     "react",

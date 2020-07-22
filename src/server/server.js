@@ -1,6 +1,7 @@
 /* eslint-disable func-names */
 import express from 'express';
 import dotenv from 'dotenv';
+import webpack from 'webpack';
 import helmet from 'helmet';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -132,12 +133,10 @@ app.post('/auth/sign-in', async function(req, res, next) {
 
         const { token, ...user } = data;
 
-        res.cookie('token', token, {
-          httpOnly: !(ENV === 'development'),
-          secure: !(ENV === 'development')
-          // maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
+        res.cookie("token", token, {
+          httpOnly: (ENV === 'development'),
+          secure: (ENV === 'development')
         });
-
         res.status(200).json(user);
 
       });
