@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable func-names */
 import express from 'express';
 import dotenv from 'dotenv';
-import webpack from 'webpack';
 import helmet from 'helmet';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -17,6 +17,9 @@ import reducer from '../frontend/reducers';
 import getManifest from './getManifest';
 import serverRoutes from '../frontend/routes/serverRoutes';
 import Layout from '../frontend/components/Layout';
+
+import initialState  from '../frontend/initialState';
+
 
 
 dotenv.config();
@@ -54,7 +57,7 @@ const setResponse = (html, preloadedState, manifest) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link href=${mainStyles} rel="stylesheet" type="text/css"></link>
-          <title>Platzi Video | App</title>
+          <title>La Casita de Magy</title>
       </head>
       <body>
           <div id="app">${html}</div>
@@ -70,7 +73,8 @@ const setResponse = (html, preloadedState, manifest) => {
 
 const renderApp = async (req, res) => {
 
-  let initialState;
+
+  /*
   const { token ,email, name, id } = req.cookies;
 
   try {
@@ -87,17 +91,17 @@ const renderApp = async (req, res) => {
         id, email, name
       },
       myList: [],
-      trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
-      originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id)
+      trends: movieList,// .filter(movie => movie.contentRating === 'PG' && movie._id),
+      originals: movieList, // .filter(movie => movie.contentRating === 'G' && movie._id)
     };
 
   } catch (err) {
     initialState = {
       user: {},
-      trends: [],
+      trends: [4],
       originals: []
     };
-  };
+  }; */
 
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
@@ -134,8 +138,8 @@ app.post('/auth/sign-in', async function(req, res, next) {
         const { token, ...user } = data;
 
         res.cookie("token", token, {
-          httpOnly: (ENV === 'development'),
-          secure: (ENV === 'development')
+          httpOnly: !(ENV === 'development'),
+          secure: !(ENV === 'development')
         });
         res.status(200).json(user);
 
@@ -177,5 +181,5 @@ app.get('*', renderApp);
 
 app.listen(PORT, (err) => {
   if (err) console.log(err);
-  else console.log(`The server is running on PORT ${PORT}`);
+  else console.log(`The server is running (http://localhost:${PORT})`);
 });

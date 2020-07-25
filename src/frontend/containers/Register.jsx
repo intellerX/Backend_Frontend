@@ -1,75 +1,63 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { registerUser } from "../actions";
-import Header from '../components/Header';
+import React , {useState} from 'react';
 import '../assets/styles/components/Register.scss';
+import {connect} from 'react-redux';
+import {registerRequest} from '../actions';
 
-const Register = props => {
-  const [form, setValues] = useState({
-    email: '',
-    id: '',
-    name: '',
-    password: '',
-  });
-
-  const updateInput = event => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value
+const Register = (props) => {
+    const [form,setValues] = useState({
+        email: '',
+        name: '',
+        password: '',
     });
-  };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    props.registerUser(form, '/login');
-  }
-  return (
-    <>
-      <Header isRegister />
-      <section className="register">
-        <section className="register__container">
-          <h2>Regístrate</h2>
-          <form className="register__container--form" onSubmit={handleSubmit}>
-            <input
-              name="name"
-              className="input"
-              type="text"
-              placeholder="Nombre"
-              onChange={updateInput}
-            />
-            <input
-              name="email"
-              className="input"
-              type="text"
-              placeholder="Correo"
-              onChange={updateInput}
-            />
-            <input
-              name="password"
-              className="input"
-              type="password"
-              placeholder="Contraseña"
-              onChange={updateInput}
-            />
-            <button className="button" type="submit">Registrarme</button>
-          </form>
-          <Link to="/login" className="register__container--login">
-            Iniciar sesión
-          </Link>
+    const handleInput = event =>{
+        setValues({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    };
+
+    const handleSubmit = event =>{
+       event.preventDefault();
+       props.registerRequest(form);
+       props.history.push('/')
+    };
+    return(
+        <section className="register">
+            <section className="register__container">
+            <h2>Regístrate</h2>
+            <form className="register__container--form" onSubmit = {handleSubmit}>
+                <input 
+                    name = "name"
+                    className="input"
+                    type="text" 
+                    placeholder="Nombre"
+                    onChange = {handleInput}
+                 />
+                <input 
+                    name = "email"
+                    className="input" 
+                    type="text" 
+                    placeholder="Correo"
+                    onChange = {handleInput}
+                />
+                <input
+                    name = "password"
+                    className="input"
+                    type="password" 
+                    placeholder="Contraseña"
+                    onChange = {handleInput}
+                  />
+                <button className="button">Registrarme</button>
+            </form>
+            <a href="/login">Iniciar sesión</a>
+            </section>
         </section>
-      </section>
-    </>
-  );
+
+    );
 }
 
 const mapDispatchToProps = {
-  registerUser,
+    registerRequest,
 };
-
-Register.propTypes = {
-  registerUser: PropTypes.func,
-};
-
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null,mapDispatchToProps)(Register);

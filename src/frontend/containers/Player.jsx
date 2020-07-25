@@ -1,43 +1,51 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getVideoSource } from "../actions";
+import React,{useEffect,useState} from 'react';
+import {connect} from 'react-redux';
 import '../assets/styles/components/Player.scss';
-import NotFount from "./NotFount";
+import {getVideoSource} from '../actions';
+import NotFound from '../containers/NotFound';
 
-const Player = (props) => {
-  const { id } = props.match.params;
-  const hasPlaying = Object.keys(props.playing).length > 0;
-  useEffect(() => {
-    props.getVideoSource(id);
-  }, []);
-  return !hasPlaying ? <NotFount /> : (
-    <div className="Player">
-      <video controls autoPlay>
-        <source src={props.playing.source} type="video/mp4" />
-        Your browser does not support HTML5 video.
-      </video>
-      <div className="Player-back">
-        <button type="button" onClick={() => props.history.goBack()}>
-          Regresar
-        </button>
-      </div>
-    </div>
-  );
-}
 
-Player.propTypes = {
-  getVideoSource: PropTypes.func,
+const Player = props => {
+
+    const { id } = props.match.params;
+    const [ loading, setLoading ] = useState(true);
+    const hasPlaying = Object.keys(props.playing).length > 0;
+    
+
+    useEffect(() => {
+        props.getVideoSource(id);
+        setLoading(false);
+    }, []); 
+
+    if (loading) return <h2>Cargando video...</h2>
+
+    console.log(props.playing.id);
+    
+
+    return hasPlaying ? (
+        <div className="Player">
+            <iframe width="1080" height="720"
+            src={props.playing.source}>
+            </iframe>
+            <div className="Player-back">
+                <button type="button" onClick={() => props.history.goBack()}>
+                    Regresar
+                </button>
+            </div>
+        </div>
+    )
+    :
+    <NotFound />
 };
 
 const mapStateToProps = state => {
-  return {
-    playing: state.playing,
-  };
+    return {
+        playing: state.playing,
+    }
 };
 
 const mapDispatchToProps = {
-  getVideoSource,
-};
+    getVideoSource,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

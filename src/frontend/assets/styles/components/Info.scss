@@ -1,0 +1,95 @@
+.image__info{
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+}
+.panel__info{
+    margin-top: 0px;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.panel1{
+    background-color: #F3F781;
+    width: 50%;
+    height: 100%;
+}
+
+.panel1 p {
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.panel2{
+
+    width: 50%;
+    overflow: hidden;
+    margin: 0px;
+    position: relative;
+    height: 100%;
+    align-items: center;
+
+}
+
+.panel2__image2{
+    position:absolute;
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto;
+    min-height: 90%;
+    min-width: 90%;    
+    width: 100%;
+}
+
+.slider{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #e7f5ff ;
+}
+
+.slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+
+    animation: cambio 20s infinite;
+    animation-direction: alternate;
+}
+
+.slider li{
+    width: 100%;
+    list-style: none;
+}
+
+.slider img{
+    width: 100%;
+}
+
+.slider h4{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+
+
+
+@keyframes cambio {
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+
+}

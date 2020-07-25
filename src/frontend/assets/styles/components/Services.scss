@@ -1,0 +1,53 @@
+
+.title__box{
+    height: 100px;
+    justify-content:center;
+    display: flex;
+}
+
+
+.image__info{
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+}
+.panel__info{
+    margin-top: 0px;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    height: 400px;
+    width: 100%;
+}
+.panel1{
+    background: #F3F781;
+    width: 50%;
+    height: 100%;
+}
+.panel2{
+    background: #F67272;
+    width: 50%;
+    overflow: hidden;
+    margin: 0px;
+    position: relative;
+    height: 100%;
+    align-items: center;
+
+}
+
+.parr{
+    margin: 15%;
+}
+
+.panel2__image{
+    position:absolute;
+    left: -50%;
+    right: -50%;
+    top: -50%;
+    bottom: -50%;
+    margin: auto;
+    min-height: 10%;
+    min-width: 10%;
+    height:  100%;
+}

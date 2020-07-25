@@ -2,14 +2,14 @@ import Home from '../containers/Home';
 import Player from '../containers/Player';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
-import NotFount from '../containers/NotFount';
+import NotFount from '../containers/NotFound';
 
 const serverRoutes = (isLogged) => {
   return [
     {
       path: '/',
       exact: true,
-      component: isLogged ? Home : Login,
+      component:  Home ,
     },
     {
       path: '/player/:id',
