@@ -81,7 +81,7 @@ const Home = ({  trends  }) => {
         </Carousel>
       </Categories>
 
-      <div dangerouslySetInnerHTML={{ __html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d497.01349103469977!2d-75.9169507!3d4.7512781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38714751cd6395%3A0xdb37bc25ca3a345b!2sLa%20Casita%20de%20Magy!5e0!3m2!1ses!2sco!4v1593642280353!5m2!1ses!2sco" width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>' }} />
+      <div dangerouslySetInnerHTML={{ __html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d497.01349103469977!2d-75.9169507!3d4.7512781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38714751cd6395%3A0xdb37bc25ca3a345b!2sLa%20Casita%20de%20Magy!5e0!3m2!1ses!2sco!4v1593642280353!5m2!1ses!2sco" width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>' }} />
 
     </div>
   );
