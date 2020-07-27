@@ -55,7 +55,7 @@ const setResponse = (html, preloadedState, manifest) => {
       <html lang="es">
       <head>
           <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="viewport" minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
           <link href=${mainStyles} rel="stylesheet" type="text/css"></link>
           <title>La Casita de Magy</title>
       </head>
