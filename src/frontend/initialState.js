@@ -24,7 +24,7 @@ export default {
       "year": 2020,
       "contentRating": "16+",
       "duration": 164,
-      "cover":  require("./assets/static/montesori/m1.jpg"),
+      "cover":  Im1,
       "description": "El método Montessori se caracteriza por proveer un ambiente preparado: ordenado, estético, simple, real, donde cada elemento tiene su razón de ser en el desarrollo de los niños. Promueve naturalmente la socialización, el respeto y la solidaridad.",
       "source": "https://www.youtube.com/embed/nLflWQuswYg?autoplay=1"
     },
