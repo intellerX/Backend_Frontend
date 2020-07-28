@@ -9,7 +9,7 @@ import '../assets/styles/components/Home.scss';
 import Image1 from '../assets/static/Image11.jpg';
 import Medalla from '../assets/static/Medalla.jpg';
 
-import ImgHome from '../assets/static/home.png';
+import ImgNotice from '../assets/static/noticias.png';
 import ImgInfo from '../assets/static/info.png';
 import ImgFood from '../assets/static/food.png';
 import ImgPuzzle from '../assets/static/puzzle.png';
@@ -28,10 +28,10 @@ const Home = ({  trends  }) => {
       <img className='image1' id='Image1' data-type='image' src={Image1} alt='niño' />
 
       <div className='icons__bar'>
-        <Link to='/'>
+        <Link to='/notices'>
           <div className='contenedor' id='uno'>
-            <img className='icon' src={ImgHome} alt='home' />
-            <p className='texto'>Home</p>
+            <img className='icon' src={ImgNotice} alt='home' />
+            <p className='texto'>Noticias</p>
           </div>
         </Link>
         <Link to='/info'>

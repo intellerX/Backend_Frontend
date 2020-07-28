@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import '../assets/styles/components/Info.scss';
 
 import ImgArte from '../assets/static/slider/Arte.jpg';
@@ -100,5 +99,7 @@ const Info = () => {
 
   );
 };
+
+
 
 export default Info;

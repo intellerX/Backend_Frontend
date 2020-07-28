@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import '../assets/styles/components/Player.scss';
 import {getVideoSource} from '../actions';
-import NotFound from '../containers/NotFound';
+import NotFound from "./NotFound";
 
 
 const Player = props => {
@@ -23,19 +23,20 @@ const Player = props => {
     
 
     return hasPlaying ? (
-        <div className="Player">
-            <iframe width="1080" height="720"
-            src={props.playing.source}>
-            </iframe>
-            <div className="Player-back">
-                <button type="button" onClick={() => props.history.goBack()}>
-                    Regresar
-                </button>
-            </div>
+      <div className="Player">
+        <iframe
+          title="player"
+          src={props.playing.source}
+        />
+        <div className="Player-back">
+          <button type="button" onClick={() => props.history.goBack()}>
+            Regresar
+          </button>
         </div>
+      </div>
     )
     :
-    <NotFound />
+      <NotFound />
 };
 
 const mapStateToProps = state => {

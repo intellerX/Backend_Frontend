@@ -8,6 +8,7 @@ import Layout from '../components/Layout';
 import Player from '../containers/Player';
 import Info from '../containers/Info';
 import Services from '../containers/Services';
+import Notices from '../containers/Notices';
 
 const App = () => (
   <BrowserRouter>
@@ -20,6 +21,7 @@ const App = () => (
         <Route exact path='/player/:id' component={Player} />
         <Route exact path='/info' component={Info} />
         <Route exact path='/servicios' component={Services} />
+        <Route exact path='/notices' component={Notices} />
 
         <Route component={NotFound} />
       </Switch>

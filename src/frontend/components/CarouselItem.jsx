@@ -6,6 +6,7 @@ import '../assets/styles/components/CarouselItem.scss';
 import playIcon from '../assets/static/play-icon.png';
 import {setFavorite } from '../actions';
 
+
 const CarouselItem = (props) => {  
   const {id,cover , title , year , contentRating , duration , isList, description} = props;
   const handleSetFavorite = () => {
